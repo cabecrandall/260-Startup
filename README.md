@@ -21,13 +21,13 @@ Medicost is an application that compares doctors all over a given area (Provo, f
 
 For this deliverable I built out the structure of my application using HTML.
 
-- **HTML pages** - 
-- **Links** - 
-- **Text** - 
-- **Images** - 
-- **Login** - 
-- **Database** - 
-- **WebSocket** - 
+- **HTML pages** - 8 HTML Pages that form the structure of the website
+- **Links** - Several Links, both to local paths and outside sources
+- **Text** - Oodles of text in website and hospital descriptions, as well as hospital reviews
+- **Images** - At least five images, as well as the tab icon, from local and internet sources
+- **Login** - Login and Account Creation pages included
+- **Database** - Several database placeholders for user reviews, search history and user favorites
+- **WebSocket** - Websocket placeholders for current insurance rates on hospital descriptions and medical news on index.html
 
 ## CSS deliverable
 
