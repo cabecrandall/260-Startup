@@ -1,0 +1,42 @@
+
+
+
+nav {
+    margin: 5px 10px 5px 10px;
+    border-radius: 10px;
+    background-color: lightslategray;
+    padding: 10%
+}
+
+nav > a {
+    margin: 0 40px 0 10px;
+}
+
+
+body {
+    background-color: lightgray;
+    min-height: 100vh;
+    position: relative;
+    margin: 0; 
+    max-width: 100%;
+}
+
+hr {
+    background-color: lightcyan;
+    margin: 0; 
+}
+
+footer {
+    position: relative;
+    bottom: 0;
+    margin: 40px 10px 10px 10px;
+    height: auto; 
+    padding: 10px; 
+    background-color: rgb(60, 60, 60); 
+    border-radius: 10px;
+    color:white;
+}
+
+footer > a {
+    color: whitesmoke;
+}
