@@ -7,6 +7,9 @@
     <title>About</title>
     <link rel="icon" href="doctor.png" />
 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap">
+
+
     <!-- Include bootstrap CSS framework -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
@@ -25,7 +28,8 @@
     </style>
 
   </head>
-  <body>
+  <body class="doctor">
+    <div class="front-animation">
         <!--Navbar from Bootstrap, customized to be bouncy-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
           <a style="font-size: 4em;" class="navbar-brand" href="index.html">Medicost CSS</a>
@@ -45,13 +49,12 @@
               </li>
             </ul>
           </div>
-        </nav>
-    <main>
-      <center>
-      <div id="picture" class="picture-box"><img width="700px" src="crowd of doctors.jpeg" alt="doctors" /></div>
-     </center>
+        </div>
+      </nav>
+  <main>
+    
 
-      <p>
+      <p class="about">
         Medicost is an application that compares doctors all over a given area 
         (Provo, for example). A user creates an account, chooses their insurance, 
         and then can filter clinics and offices based on their healthcare needs. 
@@ -59,17 +62,19 @@
         and ER rates for all known hospitals and clinics.
       </p>
 
-      <p>
+      <p class="about">
         Please <a href="https://account.venmo.com/settings/profile">Donate</a> 
         to Medicost if these services were helpful!</a>
       </p>
-    </body>
-    
-    <footer>
+    </main>
+  </body>
+  
+    <footer id="specialfooter">
       <span class="text-reset" style="float:left">Caleb Crandall
       </span><br>
       <a href="https://github.com/cabecrandall/260-Startup">GitHub</a>
   </footer>
+
     
   
 </html>

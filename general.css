@@ -1,11 +1,17 @@
 
-
+body, h1, h2, h3, p, button, input {
+    font-family: 'Tilt Neon', cursive;
+  }
 
 nav {
     margin: 5px 10px 5px 10px;
     border-radius: 10px;
     background-color: lightslategray;
     padding: 10%
+}
+
+main {
+    flex: 1;
 }
 
 nav > a {
@@ -19,11 +25,14 @@ body {
     position: relative;
     margin: 0; 
     max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-hr {
-    background-color: lightcyan;
-    margin: 0; 
+h2 {
+    
+    margin: 10px 0 0 0; 
 }
 
 footer {
@@ -40,3 +49,95 @@ footer {
 footer > a {
     color: whitesmoke;
 }
+
+button {
+    margin: 20px 10px 10px 10px;
+}
+
+table {
+    background-color: #E6E6FA; /* Lavender color */
+    border: 1px solid #ddd; /* Add borders for better visual separation */
+    width: 80%;
+    border-radius: 20px;
+    align-items: center;
+    margin: 20px 0 0 0;
+  }
+
+th, td {
+border: 1px solid lightgray; /* Add borders to table cells */
+padding: 8px; /* Add padding for better spacing */
+text-align: left; /* Align text to the left */
+}
+
+/* Styles for lavender boxes */
+.lavender-box {
+background-color: #E6E6FA; /* Lavender background color */
+border: 3px solid #800080; /* Dark purple border */
+border-radius: 10px; /* Rounded corners */
+padding: 10px; /* Padding inside the box */
+margin: 20px 0; /* Margin to separate the boxes */
+}
+
+/* Styles for dark purple headers */
+.purple-header {
+background-color: #800080; /* Dark purple header background */
+color: white; /* White text color */
+padding: 5px 10px; /* Padding for the header */
+border-radius: 10px 10px 0 0; /* Rounded corners for the top of the header */
+margin: 0; /* Remove margin to keep header close to the box */
+}
+
+/* Additional styles for unordered lists */
+.lavender-box ul {
+list-style: none;
+padding: 0;
+margin: 0;
+}
+
+.lavender-box ul li {
+margin: 5px 0;
+}
+  
+.profile-pic-container {
+    width: 400px; /* Set the desired width */
+    height: 400px; /* Set the same height as the width for a square aspect ratio */
+    overflow: hidden; /* Hide any part of the image that overflows the square container */
+  }
+  
+  .rounded-profile-pic {
+    width: 400px; /* Ensure the image fills the container */
+    border-radius: 50%; /* Apply a circular border */
+  }
+
+.medical-info {
+  background-color: #ADD8E6; /* Light blue background color */
+  border: 1px solid #00008B; /* Dark blue border color */
+  border-radius: 10px; /* Rounded corners */
+  color: #00008B; /* Dark blue text color */
+  padding: 10px; /* Add padding for spacing */
+}
+
+.front-animation {
+    min-height: calc(100vh - (height of the footer));    
+    padding: 0;
+    background-image: url('crowd of doctors.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+
+  .doctor {
+    background-image: url('crowd of doctors.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+
+  .about {
+    background-color: white;
+    border-radius: 25px;
+    padding: 25px;
+    align-items: center;
+    justify-content: center;
+  }
+
