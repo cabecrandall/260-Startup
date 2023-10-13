@@ -33,12 +33,14 @@ For this deliverable I built out the structure of my application using HTML.
 
 For this deliverable I properly styled the application into its final appearance.
 
-- **Header, footer, and main content body** - 
-- **Navigation elements** - 
-- **Responsive to window resizing** - 
-- **Application elements** - 
-- **Application text content** - 
-- **Application images** - 
+- **Header, footer, and main content body** - All formatted into pretty, curvy bubbles!
+- **Navigation elements** - optimized using Bootstrap
+- **Responsive to window resizing** - Flex is used, along with percentage sizes and viewport height and
+width for phone-friendly sizing. Nav element needs work on phones, but bootstrap is confusing.
+- **Application elements** - Formatted map to look better, and put in contrasting and colorful text
+boxes with a consistent format
+- **Application text content** - Brought in google font to make unique vibes
+- **Application images** - Profile picture and BYU logo made circular!
 
 ## JavaScript deliverable
 
