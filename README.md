@@ -6,7 +6,7 @@ Medicost is an application that compares doctors all over a given area (Provo, f
 ![Mock!](mock.png)
 
 ## Key Features:
-- Secure login and account creation
+- Secure login and account creation 
 - Search history is permanently saved in account profile
 - User review history is also permanently saved, always viewable by all users
 - Ability to set default insurance for searches

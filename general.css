@@ -35,6 +35,15 @@ h2 {
     margin: 10px 0 0 0; 
 }
 
+.form-group {
+    padding: 10px;
+    margin: 10px 10% 10px 10%;
+}
+
+#profile-picture {
+  left:30px;  
+}
+
 footer {
     position: relative;
     bottom: 0;
@@ -44,6 +53,10 @@ footer {
     background-color: rgb(60, 60, 60); 
     border-radius: 10px;
     color:white;
+}
+
+nav > ul > li > a {
+    margin: 0 40px 0 10px;
 }
 
 footer > a {

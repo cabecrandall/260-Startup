@@ -32,32 +32,28 @@
  <body>
        <!--Navbar from Bootstrap, customized to be bouncy-->
        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-         <a style="font-size: 4em;" class="navbar-brand" href="index.html">Medicost CSS</a>
-         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-           <span class="navbar-toggler-icon"></span>
-         </button>
-         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-           <ul class="navbar-nav justify-content-end">
-             <li class="nav-item">
-               <a style="font-size: 2em;" class="nav-link" href="index.html">Home</a>
-             </li>
-             <li class="nav-item active">
-               <a style="font-size: 2em;" class="nav-link" href="profile.html">My Profile</a>
-             </li>
-             <li class="nav-item">
-               <a style="font-size: 2em;" class="nav-link" href="about.html">About</a>
-             </li>
-           </ul>
-         </div>
-       </nav>
+        <a style="font-size: 4em;" class="navbar-brand" href="index.html">Medicost CSS</a>
+          <ul class="navbar-nav justify-content-end">
+            <li class="nav-item active">
+              <a style="font-size: 2em;" class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a style="font-size: 2em;" class="nav-link" href="profile.html">My Profile</a>
+            </li>
+            <li class="nav-item">
+              <a style="font-size: 2em;" class="nav-link" href="about.html">About</a>
+            </li>
+          </ul>
+      </nav>
 
     <main>
       <center>
-        <h1>
+        <h1 id="username">
           Floyd Landis
+          </h1>
           
         <div class="profile-pic-container"><a href="https://en.wikipedia.org/wiki/Floyd_Landis">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/FloydLandis.jpg" alt="Profile picture" class="rounded-profile-pic"></div>
+          <img id="profilePicture" src="https://upload.wikimedia.org/wikipedia/commons/0/0b/FloydLandis.jpg" alt="Profile picture" class="rounded-profile-pic"></div>
         </a>
         <div class="lavender-box">
           <h2 class="purple-header">Favorited Clinics & Doctors (Database Placeholder)</h2>
@@ -91,5 +87,46 @@
       <a href="https://github.com/cabecrandall/260-Startup">GitHub</a>
   </footer>
     
-  
+  <script>
+    // Retrieve the username from localStorage
+    const storedUsername = localStorage.getItem('username');
+    const storedProfilePicture = localStorage.getItem('profilePicture');
+
+    // Update the username element with the retrieved value
+    const usernameElement = document.getElementById('username');
+    if (storedUsername) {
+      usernameElement.textContent = storedUsername;
+    }
+    if (storedProfilePicture) {
+  // Convert the data URL (string) to a Blob
+  const blob = dataURLtoBlob(storedProfilePicture);
+
+  // Create a new FileReader
+  const reader = new FileReader();
+
+  reader.onload = (e) => {
+    // Set the image source to the loaded file content
+    preview.src = e.target.result;
+  };
+
+  // Read the Blob as a data URL
+  reader.readAsDataURL(blob);
+}
+
+// Function to convert a data URL to a Blob
+function dataURLtoBlob(dataURL) {
+  const parts = dataURL.split(',');
+  const contentType = parts[0].split(':')[1];
+  const byteCharacters = atob(parts[1]);
+
+  const byteNumbers = new Array(byteCharacters.length);
+  for (let i = 0; i < byteCharacters.length; i++) {
+    byteNumbers[i] = byteCharacters.charCodeAt(i);
+  }
+
+  const byteArray = new Uint8Array(byteNumbers);
+  return new Blob([byteArray], { type: contentType });
+}
+    console.log("yuh");
+</script>
 </html>
