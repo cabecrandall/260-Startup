@@ -46,9 +46,9 @@ boxes with a consistent format
 
 For this deliverable I implemented by JavaScript so that the application works for a single user. I also added placeholders for future technology.
 
-- **login** - 
-- **database** - 
-- **WebSocket** - 
+- **login** - Login saves information to localStorage, along with an uploaded image in the Create Account page. Username displays itself on the profile page.
+- **database** - Favorited clinics and recent hospital pages visited shows up on the profile page. There is an option to favorite the clinic on each clinic page in the "Search This Area" feature that saves the favorite to the localStorage
+- **WebSocket** - There is a list of online users and doctors at the bottom of index.html that serves as a placeholder for keeping track of actual users on the website. It randomly displays and deletes names from an array in a function at the bottom of index.html.
 - **application logic** - 
 
 ## Service deliverable

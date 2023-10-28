@@ -18,7 +18,8 @@ function handleLogin(event) {
 
 function setProfilePicture(event) {
     event.preventDefault();
-    const file = fileInput.files[0];
+    const file = document.getElementById("profilePicture").files[0];
+    console.log(file + "  uhhhh")
     if (file) {
       // Read the selected file and set it as the profile picture
       const reader = new FileReader();
@@ -27,10 +28,10 @@ function setProfilePicture(event) {
         // Store the profile picture in localStorage
         localStorage.setItem('profilePicture', profilePicture);
         // Redirect back to the profile page
-        window.location.href = 'profile.html';
+        //window.location.href = 'profile.html';
       };
       reader.readAsDataURL(file);
-      console.log("read!")
+      console.log("Final result: " + localStorage.getItem('profilePicture'))
     }
 }
 

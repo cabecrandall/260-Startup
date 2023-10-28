@@ -122,11 +122,15 @@
 
       </center>
       
-      <div style="border-radius:0% ; border-style: solid; border-color: black;"></div>
+      <div style="border-radius:0% ; border-style: solid; border-color: black;">
       <h3>
-        Current Users/Doctors Online
+        Current Users/Doctors Online (Websocket Placeholder)
       </h3>
-      &lpar;Insert Websocket Data Here&rpar;
+      <ul id="currents">
+        
+      </ul>
+    </div>
+      
     </div>
       
     </main>
@@ -138,6 +142,38 @@
 </footer>
 
 <script src="login.js"></script>
+<script>
+
+  const names = ["Dr. Oz", "Muskrat Boy", "Barbara Streisand (deceased)",
+   "Ancient Voodoo Healer", "Jonathan Cena", "Obama (*insert last name*)",
+    "Ansel Elgort", "Kanye East", "Mr. Nebuchadnezzar", "Dr. Philistina"];
+  const list = document.getElementById("currents");
+
+  function addName() {
+    const randomIndex = Math.floor(Math.random() * names.length);
+    const name = names[randomIndex];
+    const listItem = document.createElement("li");
+    listItem.textContent = name;
+    list.appendChild(listItem);
+  }
+
+  function removeName() {
+    const listItems = list.getElementsByTagName("li");
+    if (listItems.length > 0) {
+      const randomIndex = Math.floor(Math.random() * listItems.length);
+      list.removeChild(listItems[randomIndex]);
+    }
+  }
+
+  setInterval(() => {
+    const shouldAdd = Math.random() < 0.5;
+    if (shouldAdd) {
+      addName();
+    } else {
+      removeName();
+    }
+  }, 1000);
+</script>
 
   
 </html>

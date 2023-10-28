@@ -34,10 +34,10 @@
        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a style="font-size: 4em;" class="navbar-brand" href="index.html">Medicost CSS</a>
           <ul class="navbar-nav justify-content-end">
-            <li class="nav-item active">
+            <li class="nav-item">
               <a style="font-size: 2em;" class="nav-link" href="index.html">Home</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
               <a style="font-size: 2em;" class="nav-link" href="profile.html">My Profile</a>
             </li>
             <li class="nav-item">
@@ -57,17 +57,15 @@
         </a>
         <div class="lavender-box">
           <h2 class="purple-header">Favorited Clinics & Doctors (Database Placeholder)</h2>
-          <ul>
-            <li><a href="">Intermountain Healthcare</a></li>
+          <ul id="favorites">
             <li><a href="search.html">Add more!</a></li>
           </ul>
         </div>
         
         <div class="lavender-box">
           <h2 class="purple-header">Recently Searched (Database Placeholder)</h2>
-          <ul>
-            <li><a href="">Intermountain Healthcare</a></li>
-            <li><a href="">Mountainland Community Health Center</a></li>
+          <ul id="recents">
+            
           </ul>
         </div>
         
@@ -91,6 +89,8 @@
     // Retrieve the username from localStorage
     const storedUsername = localStorage.getItem('username');
     const storedProfilePicture = localStorage.getItem('profilePicture');
+    const storedHistory = localStorage.getItem('visitedPages');
+    const favorites = localStorage.getItem('favoritedPages')
 
     // Update the username element with the retrieved value
     const usernameElement = document.getElementById('username');
@@ -99,34 +99,46 @@
     }
     if (storedProfilePicture) {
   // Convert the data URL (string) to a Blob
-  const blob = dataURLtoBlob(storedProfilePicture);
 
-  // Create a new FileReader
-  const reader = new FileReader();
 
-  reader.onload = (e) => {
     // Set the image source to the loaded file content
-    preview.src = e.target.result;
-  };
-
-  // Read the Blob as a data URL
-  reader.readAsDataURL(blob);
+    const profilePic = document.getElementById("profilePicture");
+    profilePic.src = storedProfilePicture;
 }
 
-// Function to convert a data URL to a Blob
-function dataURLtoBlob(dataURL) {
-  const parts = dataURL.split(',');
-  const contentType = parts[0].split(':')[1];
-  const byteCharacters = atob(parts[1]);
-
-  const byteNumbers = new Array(byteCharacters.length);
-  for (let i = 0; i < byteCharacters.length; i++) {
-    byteNumbers[i] = byteCharacters.charCodeAt(i);
+if (storedHistory) {
+    const recentsElement = document.getElementById('recents');
+    const visitedPages = JSON.parse(storedHistory);
+    console.log(visitedPages);
+    const uniqueIds = new Set(visitedPages);
+    uniqueIds.forEach(id => {
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = id;
+      li.textContent = id.replace('.html', '').replace(/\W/g, '').replace("_", " ");
+      recentsElement.appendChild(a);
+      a.appendChild(li);
+      console.log("child added: " + id);
+    });
   }
 
-  const byteArray = new Uint8Array(byteNumbers);
-  return new Blob([byteArray], { type: contentType });
-}
-    console.log("yuh");
+  if (favorites) {
+    const recentsElement = document.getElementById('favorites');
+    const favoritePages = JSON.parse(favorites);
+    console.log(favoritePages);
+    const uniqueIds = new Set(favoritePages);
+    uniqueIds.forEach(id => {
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = id;
+      li.textContent = id.replace('.html', '').replace(/\W/g, '').replace("_", " ");
+      recentsElement.insertBefore(a, recentsElement.firstElementChild);
+      a.appendChild(li);
+      console.log("favorite added: " + id);
+    });
+  }
+
+
+
 </script>
 </html>
