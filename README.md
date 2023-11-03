@@ -3,7 +3,7 @@
 # MediCost
 Medicost is an application that compares doctors all over a given area (Provo, for example). A user creates an account, chooses their insurance, and then can filter clinics and offices based on their healthcare needs. This will include options for specific procedures, general practice doctors, and ER rates for all known hospitals and clinics. The application will also include a rating system for doctors and clinics according to registered users. The interface would look like a much better version of the following representation:
 
-![Mock!](mock.png)
+![Mock!](resources/mock.png)
 
 ## Key Features:
 - Secure login and account creation 
