@@ -5,6 +5,8 @@ const app = express();
 // Third party middleware - Cookies
 app.use(cookieParser());
 
+console.log("uhh");
+
 app.post('/cookie/:name/:value', (req, res, next) => {
   res.cookie(req.params.name, req.params.value);
   res.send({cookie: `${req.params.name}:${req.params.value}`});
