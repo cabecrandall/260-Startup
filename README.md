@@ -53,11 +53,11 @@ For this deliverable I implemented by JavaScript so that the application works f
 
 ## Service deliverable
 
-For this deliverable I added backend endpoints that receives votes and returns the voting totals.
+For this deliverable I converted the service to fetch API endpoints for... **HUUH**
 
 - **Node.js/Express HTTP service** - 
-- **Static middleware for frontend** - 
-- **Calls to third party endpoints** - 
+- **Static middleware for frontend** - files served through express for frontend application, located in "public"
+- **Calls to third party endpoints** - Calls google maps API on the homepage
 - **Backend service endpoints** - 
 - **Frontend calls service endpoints** - 
 

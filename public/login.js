@@ -1,7 +1,23 @@
+class user {
+    constructor(username, password, profilePicture) {
+        this.username = username;
+        this.password = password;
+        this.profilePicture = profilePicture;
+        this.favorites = [];
+        this.history = [];
+    }
+}
+
+const users = []
+
 // Function to handle form submission
 function handleLogin(event) {
     event.preventDefault();
 
+    // check to see if user exists
+
+
+    
     // Get the values from the form
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
