@@ -35,7 +35,7 @@ app.get('/user/:username', (req, res) => {
 app.get('/user/:username/favorites', (req, res) => {
     const user = getUser(req.body.username);
     if (user) {
-        res.send(user.favorites);
+        res.send(JSON.stringify(user.favorites));
     } else {
         res.status(404).send("User not found");
     }
@@ -44,7 +44,7 @@ app.get('/user/:username/favorites', (req, res) => {
 app.get('/user/:username/history', (req, res) => {
     const user = getUser(req.params.username);
     if (user) {
-        res.send(user.history);
+        res.send(JSON.stringify(user.history));
     } else {
         res.status(404).send("User not found");
     }
@@ -52,7 +52,6 @@ app.get('/user/:username/history', (req, res) => {
 
 app.put('/user/:username', (req, res) => {
     const user = getUser(req.params.username);
-    console.log("user: " + user);
     if (user) {
         user.profilePicture = req.body.profilePicture;
         res.send(user.profilePicture);
@@ -63,6 +62,7 @@ app.put('/user/:username', (req, res) => {
 });
 
 app.put('/user/:username/favorites', (req, res) => {
+    console.log("user: " + user);
     const user = getUser(req.params.username);
     if (user) {
         user.favorites.push(req.body);
@@ -74,6 +74,7 @@ app.put('/user/:username/favorites', (req, res) => {
 });
 
 app.put('/user/:username/history', (req, res) => {
+    console.log("history: " + user);
     const user = getUser(req.params.username);
     if (user) {
         user.history.push(req.body);
