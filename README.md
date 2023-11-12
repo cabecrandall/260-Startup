@@ -53,13 +53,13 @@ For this deliverable I implemented by JavaScript so that the application works f
 
 ## Service deliverable
 
-For this deliverable I converted the service to fetch API endpoints for... **HUUH**
+For this deliverable I converted the service to fetch API endpoints for login. Now, user information is saved!
 
-- **Node.js/Express HTTP service** - 
+- **Node.js/Express HTTP service** - Startup runs and is tested through Node "index.js".
 - **Static middleware for frontend** - files served through express for frontend application, located in "public"
 - **Calls to third party endpoints** - Calls google maps API on the homepage
-- **Backend service endpoints** - 
-- **Frontend calls service endpoints** - 
+- **Backend service endpoints** - Endpoint calls exist for login and fetching user information upon login, as well as storing user information in a backend database placeholder upon user registration.
+- **Frontend calls service endpoints** - Frontend calls are all contained in login.js, which handle the above mentioned backend login functions.
 
 ## DB deliverable
 
