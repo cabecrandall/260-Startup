@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 
+const port = process.argv.length > 2 ? process.argv[2] : 3000;
+
 app.use(express.json({limit: '50mb'}));
 app.use(express.urlencoded({limit: '50mb'}));
 app.use(express.static('public'));
@@ -85,6 +87,17 @@ app.put('/user/:username/history', (req, res) => {
     }
 });
 
+// Return the application's default page if the path is unknown
+app.use((_req, res) => {
+    res.sendFile('index.html', { root: 'public' });
+  });
+
+app.listen(port, () => {
+    console.log(`Listening on port ${port}`);
+  });
+
+console.log("Server running on port 8080");
+
 
 
 
@@ -111,9 +124,7 @@ function updateUser(user) {
     }
 }
 
-app.listen(8080);
 
-console.log("Server running on port 8080");
 
 
 //Get reviews so they stay forever!
