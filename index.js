@@ -1,4 +1,5 @@
 const express = require('express');
+const DB = require('./database.js');
 const app = express();
 
 const port = process.argv.length > 2 ? process.argv[2] : 3000;
@@ -20,22 +21,22 @@ class user {
 //Endpoints
 app.post('/user', (req, res) => {
     const user = req.body;
-    users.push(user);
+    insertUser(user);
     res.send(user);
-    console.log(users);
 });
 
-app.get('/user/:username', (req, res) => {
-    const user = getUser(req.params.username);
+app.get('/user/:username', async (req, res) => {
+    const user = await getUser(req.params.username);
+    console.log("user obtained: " + user.username);
     if (user) {
-        res.send(JSON.stringify(user));
+        res.send(user);
     } else {
         res.status(404).send("User not found");
     }
 });
 
-app.get('/user/:username/favorites', (req, res) => {
-    const user = getUser(req.body.username);
+app.get('/user/:username/favorites', async (req, res) => {
+    const user = await getUser(req.body.username);
     if (user) {
         res.send(JSON.stringify(user.favorites));
     } else {
@@ -43,8 +44,8 @@ app.get('/user/:username/favorites', (req, res) => {
     }
 });
 
-app.get('/user/:username/history', (req, res) => {
-    const user = getUser(req.params.username);
+app.get('/user/:username/history', async (req, res) => {
+    const user = await getUser(req.params.username);
     if (user) {
         res.send(JSON.stringify(user.history));
     } else {
@@ -52,8 +53,8 @@ app.get('/user/:username/history', (req, res) => {
     }
 });
 
-app.put('/user/:username', (req, res) => {
-    const user = getUser(req.params.username);
+app.put('/user/:username', async (req, res) => {
+    const user = await getUser(req.params.username);
     if (user) {
         user.profilePicture = req.body.profilePicture;
         res.send(user.profilePicture);
@@ -63,9 +64,9 @@ app.put('/user/:username', (req, res) => {
     }
 });
 
-app.put('/user/:username/favorites', (req, res) => {
+app.put('/user/:username/favorites', async (req, res) => {
     console.log("user: " + user);
-    const user = getUser(req.params.username);
+    const user = await getUser(req.params.username);
     if (user) {
         user.favorites.push(req.body);
         res.send(user.favorites);
@@ -75,9 +76,9 @@ app.put('/user/:username/favorites', (req, res) => {
     }
 });
 
-app.put('/user/:username/history', (req, res) => {
+app.put('/user/:username/history', async (req, res) => {
     console.log("history: " + user);
-    const user = getUser(req.params.username);
+    const user = await getUser(req.params.username);
     if (user) {
         user.history.push(req.body);
         res.send(user.history);
@@ -105,23 +106,19 @@ console.log("Server running on port 8080");
 // Make login wooorrrrkkk!!!!
 
 
-const users = [];
 
-function getUser(username) {
-    for (let i = 0; i < users.length; i++) {
-        if (users[i].username == username) {
-            return users[i];
-        }
-    }
-    return null;
+
+async function getUser(username) {
+    const user = await DB.getUser(username);
+    return user;
 }
 
-function updateUser(user) {
-    for (let i = 0; i < users.length; i++) {
-        if (users[i].username == user.username) {
-            users[i] = user;
-        }
-    }
+async function updateUser(user) {
+    await DB.updateUser(user);
+}
+
+async function insertUser(user) {
+    await DB.insertUser(user);
 }
 
 

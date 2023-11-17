@@ -56,7 +56,7 @@ async function handleRegister(event) {
         // Store the profile picture in localStorage
         localStorage.setItem('profilePicture', profilePicture);
         // Send the profile picture to the server
-        const user = {username: username, password: password, profilePicture: profilePicture}
+        const user = {username: username, password: password, profilePicture: profilePicture, favorites: [], history: []}
         
         const response = await fetch('/user', {
         method: 'POST',

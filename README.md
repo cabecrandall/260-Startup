@@ -65,7 +65,7 @@ For this deliverable I converted the service to fetch API endpoints for login. N
 
 For this deliverable I stored the votes in the database.
 
-- **MongoDB Atlas database created** - 
+- **MongoDB Atlas database created** - Done!
 - **Endpoints for data** - 
 - **Stores data in MongoDB** - 
 
