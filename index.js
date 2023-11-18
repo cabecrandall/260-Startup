@@ -2,12 +2,15 @@ const express = require('express');
 const DB = require('./database.js');
 const app = express();
 const bcrypt = require('bcrypt');
+const cookieParser = require('cookie-parser')
+
 
 const port = process.argv.length > 2 ? process.argv[2] : 3000;
 
 app.use(express.json({limit: '50mb'}));
 app.use(express.urlencoded({limit: '50mb'}));
 app.use(express.static('public'));
+app.use(cookieParser())
 app.set('trust proxy', true);
 
 class user {
@@ -51,7 +54,6 @@ app.post('/auth/login', async (req, res) => {
     const password = req.body.password;
     const user = await getUser(req.body.username);
     if (username) {
-        console.log("passwords: " + req.body.password + "  " + user.password);
         if (bcrypt.compare(req.body.password, user.password)) {
             setAuthCookie(res, user.token);
             res.send({ id: user._id });
@@ -62,12 +64,14 @@ app.post('/auth/login', async (req, res) => {
 });
 
 app.get("/me", async (req, res, next) => {
-    console.log("Starting authentication");
     try {
+        console.log("getting token");
         authToken = req.cookies['token'];
+        console.log("authToken:", authToken);
         const user = await DB.getUserByToken(authToken);
         if (user) {
         res.send({ username: user.username });
+        console.log("username sent to frontend");
         } else {
         res.status(401).send({ msg: 'Unauthorized' });
         }

@@ -17,8 +17,10 @@ async function insertUser(user) {
     user.password = await bcrypt.hash(user.password, 10);
     console.log("hashed!");
 
+    user.token = uuid.v4();
+
     await users.insertOne({username: user.username, password: user.password, 
-      profilePicture: user.profilePicture, favorites: user.favorites, history: user.history});
+      profilePicture: user.profilePicture, token: user.token, favorites: user.favorites, history: user.history});
     console.log("user inserted");
 }
 

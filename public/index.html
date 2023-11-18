@@ -146,18 +146,18 @@
   //check if user is logged in, hide login elements if they are
   
   
-
+async function queryUser() {
   try {
-    const username = null;
-    const response = fetch("/me", {
+    let username = null;
+    const response = await fetch("/me", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
-    }).then((res) => res.json())
-      .then((data) => {
-        username = data.username;
-      });
+    });
+
+    const data = await response.json();
+    username = data.username;
 
     if (!username) {
       throw new Error("no username found!")
@@ -195,6 +195,8 @@
 
     
   }
+}
+  queryUser();
   
 
   const names = ["Dr. Oz", "Muskrat Boy", "Barbara Streisand (deceased)",
