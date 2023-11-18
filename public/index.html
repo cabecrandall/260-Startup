@@ -38,12 +38,12 @@
         <!--Navbar from Bootstrap, customized to be bouncy-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
           <a style="font-size: 4em;" class="navbar-brand" href="index.html">Medicost CSS</a>
-            <ul class="navbar-nav justify-content-end">
+            <ul class="navbar-nav justify-content-end" id="options">
               <li class="nav-item active">
                 <a style="font-size: 2em;" class="nav-link" href="index.html">Home</a>
               </li>
               <li class="nav-item">
-                <a style="font-size: 2em;" class="nav-link" href="profile.html">My Profile</a>
+                <a style="font-size: 2em;" class="nav-link" href="profile.html" id="profile">My Profile</a>
               </li>
               <li class="nav-item">
                 <a style="font-size: 2em;" class="nav-link" href="about.html">About</a>
@@ -114,9 +114,8 @@
 
 <br>
 
-    <a href="search.html">
-      <button class="btn btn-lg btn-danger btn-rounded">Search This Area</button>
-    </a>
+      <button class="btn btn-lg btn-danger btn-rounded" id="search" href = "search.html">Search This Area</button>
+   
 
 <br><br>
 
@@ -143,6 +142,60 @@
 
 <script src="login.js"></script>
 <script>
+
+  //check if user is logged in, hide login elements if they are
+  
+  
+
+  try {
+    const username = null;
+    const response = fetch("/me", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then((res) => res.json())
+      .then((data) => {
+        username = data.username;
+      });
+
+    if (!username) {
+      throw new Error("no username found!")
+    }
+    
+    
+    const loginForm = document.getElementById("loginForm");
+    const createAccount = document.getElementById("createAccount");
+    loginForm.style.display = "none";
+    createAccount.style.display = "none";
+
+    const options = document.getElementById("options");
+    const newOption = document.createElement("li");
+    newOption.className = "nav-item";
+    newOption.innerHTML = `<a style="font-size: 2em;" class="nav-link" id="logout" href="index.html">Logout</a>`;
+    options.appendChild(newOption);
+  }
+  catch {
+    console.log("User is not logged in");
+    //disable search, profile links
+    const warning = document.createElement("p");
+    warning.style.color = "red";
+    warning.innerText = "Log in to use this feature!";
+
+
+    const search = document.getElementById("search");
+    search.disabled = true;
+    search.appendChild(warning);
+
+    const profile = document.getElementById("profile");
+    profile.href = "";
+    profile.appendChild(warning);
+
+  
+
+    
+  }
+  
 
   const names = ["Dr. Oz", "Muskrat Boy", "Barbara Streisand (deceased)",
    "Ancient Voodoo Healer", "Jonathan Cena", "Obama (*insert last name*)",

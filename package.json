@@ -1,18 +1,9 @@
 {
-  "name": "260-startup",
-  "version": "1.0.0",
-  "description": "# MediCost Medicost is an application that compares doctors all over a given area (Provo, for example). A user creates an account, chooses their insurance, and then can filter clinics and offices based on their healthcare needs. This will include options for specific procedures, general practice doctors, and ER rates for all known hospitals and clinics. The application will also include a rating system for doctors and clinics according to registered users. The interface would look like a much better version of the following representation:",
-  "main": "index.js",
-  "scripts": {},
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cookie-parser": "^1.4.6",
     "express": "^4.18.2",
-    "mongodb": "^6.3.0"
-  },
-  "devDependencies": {
-    "@playwright/test": "^1.39.0",
-    "@types/node": "^20.8.10"
+    "mongodb": "^6.3.0",
+    "uuid": "^9.0.1"
   }
 }

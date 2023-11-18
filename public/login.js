@@ -13,15 +13,21 @@ async function handleLogin(event) {
     try {
     const user = await fetch('/user/' + username);
     const userJson = await user.json();
-    const correctPassword = userJson.password;
 
-    if (password !== correctPassword) {
-        throw new Error("Incorrect password");
-    }
+    
+    response = await fetch('auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ username: username, password: password })
+    });
+
+    const token = await response.json();
+    const id = token.id;
 
     // Store the login information in localStorage
     localStorage.setItem("username", username);
-    localStorage.setItem("password", password);
     localStorage.setItem("profilePicture", userJson.profilePicture);
     localStorage.setItem("favorites", JSON.stringify(userJson.favorites));
     localStorage.setItem("history", JSON.stringify(userJson.history));
@@ -32,7 +38,7 @@ async function handleLogin(event) {
     console.log("Login successful!");
   }
   catch (error) {
-    showIncorrectLogin();
+    showIncorrectLogin("loginForm");
   }
 
 
@@ -58,6 +64,7 @@ async function handleRegister(event) {
         // Send the profile picture to the server
         const user = {username: username, password: password, profilePicture: profilePicture, favorites: [], history: []}
         
+        console.log("awaiting fetch for account creation")
         const response = await fetch('/user', {
         method: 'POST',
         headers: {
@@ -65,6 +72,7 @@ async function handleRegister(event) {
         },
         body: JSON.stringify(user)
     });
+
         // Redirect back to the profile page
         //window.location.href = 'profile.html';
       };
@@ -83,6 +91,9 @@ async function handleRegister(event) {
 
     // You can redirect to another page or perform other actions here
     console.log("Login successful!");
+}
+else {
+    showIncorrectLogin("signupForm");
 }
 }
 
@@ -126,14 +137,20 @@ catch (error) {
 }
 
 
-function showIncorrectLogin() {
+
+function showIncorrectLogin(parent) {
   const errorMessage = document.getElementById("errorMessage");
   if (!errorMessage) {
     const errorMessage = document.createElement("p");
     errorMessage.id = "errorMessage";
-    errorMessage.innerText = "Incorrect username or password";
+    if (parent === "loginForm") {
+      errorMessage.innerText = "Incorrect username or password";
+    }
+    else {
+      errorMessage.innerText = "Please upload a profile picture";
+    }
     errorMessage.style.color = "red";
-    const loginForm = document.getElementById("loginForm");
+    const loginForm = document.getElementById(parent);
     loginForm.appendChild(errorMessage);
   }
 }

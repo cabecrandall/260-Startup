@@ -1,12 +1,14 @@
 const express = require('express');
 const DB = require('./database.js');
 const app = express();
+const bcrypt = require('bcrypt');
 
 const port = process.argv.length > 2 ? process.argv[2] : 3000;
 
 app.use(express.json({limit: '50mb'}));
 app.use(express.urlencoded({limit: '50mb'}));
 app.use(express.static('public'));
+app.set('trust proxy', true);
 
 class user {
     constructor(username, password, profilePicture) {
@@ -21,19 +23,73 @@ class user {
 //Endpoints
 app.post('/user', (req, res) => {
     const user = req.body;
+    if (!user.username || !user.password) {
+        res.status(400).send("Username and password required");
+        return;
+    }
+    else if (getUser(user.username).username) {
+        res.status(409).send("User already exists");
+        return;
+    }
     insertUser(user);
     res.send(user);
 });
 
 app.get('/user/:username', async (req, res) => {
     const user = await getUser(req.params.username);
-    console.log("user obtained: " + user.username);
     if (user) {
         res.send(user);
     } else {
         res.status(404).send("User not found");
     }
 });
+
+app.post('/auth/login', async (req, res) => {
+    console.log("body: ", req.body);
+    const username = req.body.username;
+    console.log("username: " + username);
+    const password = req.body.password;
+    const user = await getUser(req.body.username);
+    if (username) {
+        console.log("passwords: " + req.body.password + "  " + user.password);
+        if (bcrypt.compare(req.body.password, user.password)) {
+            setAuthCookie(res, user.token);
+            res.send({ id: user._id });
+            return;
+        }
+    }
+    res.status(401).send("Unauthorized");
+});
+
+app.get("/me", async (req, res, next) => {
+    console.log("Starting authentication");
+    try {
+        authToken = req.cookies['token'];
+        const user = await DB.getUserByToken(authToken);
+        if (user) {
+        res.send({ username: user.username });
+        } else {
+        res.status(401).send({ msg: 'Unauthorized' });
+        }
+}
+catch {
+    res.status(401).send({ msg: 'Unauthorized' });
+}
+  });
+
+  //logout
+  app.delete('/auth/logout', async (req, res) => {
+    const user = await getUserByToken(req.cookies['token']);
+    if (user) {
+      user.token = null;
+      updateUser(user);
+      res.clearCookie('token');
+      res.send({ msg: 'Logged out' });
+      return;
+    }
+    res.status(401).send({ msg: 'Unauthorized' });
+  });
+
 
 app.get('/user/:username/favorites', async (req, res) => {
     const user = await getUser(req.body.username);
@@ -54,7 +110,7 @@ app.get('/user/:username/history', async (req, res) => {
 });
 
 app.put('/user/:username', async (req, res) => {
-    const user = await getUser(req.params.username);
+    const user = await getUser(req.body.username);
     if (user) {
         user.profilePicture = req.body.profilePicture;
         res.send(user.profilePicture);
@@ -65,7 +121,6 @@ app.put('/user/:username', async (req, res) => {
 });
 
 app.put('/user/:username/favorites', async (req, res) => {
-    console.log("user: " + user);
     const user = await getUser(req.params.username);
     if (user) {
         user.favorites.push(req.body);
@@ -87,6 +142,16 @@ app.put('/user/:username/history', async (req, res) => {
         res.status(404).send("User not found");
     }
 });
+
+
+// setAuthCookie in the HTTP response
+function setAuthCookie(res, authToken) {
+    res.cookie("token", authToken, {
+      secure: true,
+      httpOnly: true,
+      sameSite: 'strict',
+    });
+  }
 
 // Return the application's default page if the path is unknown
 app.use((_req, res) => {
