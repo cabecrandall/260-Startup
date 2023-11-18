@@ -73,12 +73,23 @@ async function handleRegister(event) {
         body: JSON.stringify(user)
     });
 
+    response = await fetch('auth/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ username: username, password: password })
+    });
+
+    setTimeout(() => console.log("First"), 1000);
+
         // Redirect back to the profile page
         //window.location.href = 'profile.html';
       };
       reader.readAsDataURL(file);
 
     //send user to server
+    
     
 
     // Store the login information in localStorage

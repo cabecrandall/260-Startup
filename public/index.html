@@ -37,7 +37,7 @@
   <body>
         <!--Navbar from Bootstrap, customized to be bouncy-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-          <a style="font-size: 4em;" class="navbar-brand" href="index.html">Medicost CSS</a>
+          <a style="font-size: 4em;" class="navbar-brand" href="index.html">Medicost</a>
             <ul class="navbar-nav justify-content-end" id="options">
               <li class="nav-item active">
                 <a style="font-size: 2em;" class="nav-link" href="index.html">Home</a>
@@ -98,7 +98,7 @@
         <option>Guy-necology ;&rpar;</option>
       </select>
       <br><br>
-      <h3>Google Maps may be a websocket placeholder!</h3>
+      <h3>Hospital Map</h3>
 
       
       <iframe
@@ -113,8 +113,8 @@
 </iframe>
 
 <br>
-
-      <button class="btn btn-lg btn-danger btn-rounded" id="search" href = "search.html">Search This Area</button>
+   
+      <button class="btn btn-lg btn-danger btn-rounded" id="search" onclick="location.href='search.html'">Search This Area</button>
    
 
 <br><br>
@@ -172,8 +172,10 @@ async function queryUser() {
     const options = document.getElementById("options");
     const newOption = document.createElement("li");
     newOption.className = "nav-item";
-    newOption.innerHTML = `<a style="font-size: 2em;" class="nav-link" id="logout" href="index.html">Logout</a>`;
+    newOption.innerHTML = `<a style="font-size: 2em;" class="nav-link" id="logout">Logout</a>`;
     options.appendChild(newOption);
+    const logoutButton = document.getElementById("logout");
+    logoutButton.addEventListener("click", logout);
   }
   catch {
     console.log("User is not logged in");
@@ -228,7 +230,23 @@ async function queryUser() {
       removeName();
     }
   }, 1000);
-</script>
 
+  function logout() {
+    console.log("logging out");
+    fetch('/auth/logout', {
+      method: 'DELETE',
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.msg === 'Logged out') {
+          window.location.href = '/';
+        }
+      });
+  }
+
+
+
+ 
+</script>
   
 </html>

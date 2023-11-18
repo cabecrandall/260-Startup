@@ -48,9 +48,7 @@ app.get('/user/:username', async (req, res) => {
 });
 
 app.post('/auth/login', async (req, res) => {
-    console.log("body: ", req.body);
     const username = req.body.username;
-    console.log("username: " + username);
     const password = req.body.password;
     const user = await getUser(req.body.username);
     if (username) {
@@ -61,6 +59,16 @@ app.post('/auth/login', async (req, res) => {
         }
     }
     res.status(401).send("Unauthorized");
+});
+
+app.post('/auth/register', async (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+    const user = await getUser(req.body.username);
+    console.log("registered user: ", user.username);
+    setAuthCookie(res, user.token);
+    res.send({ id: user._id });
+    return;
 });
 
 app.get("/me", async (req, res, next) => {
@@ -83,7 +91,7 @@ catch {
 
   //logout
   app.delete('/auth/logout', async (req, res) => {
-    const user = await getUserByToken(req.cookies['token']);
+    const user = await DB.getUserByToken(req.cookies['token']);
     if (user) {
       user.token = null;
       updateUser(user);

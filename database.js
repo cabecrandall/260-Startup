@@ -31,7 +31,6 @@ async function getUser(username) {
 
 async function getUserByToken(token) {
   const user = await users.findOne({ token: token });
-  console.log("user obtained: " + user.username);
   return user ? user : null;
 }
 
