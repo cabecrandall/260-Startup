@@ -66,17 +66,17 @@ For this deliverable I converted the service to fetch API endpoints for login. N
 For this deliverable I stored the votes in the database.
 
 - **MongoDB Atlas database created** - Done!
-- **Endpoints for data** - 
-- **Stores data in MongoDB** - 
+- **Endpoints for data** - endpoints edited to accomodate data
+- **Stores data in MongoDB** - Sure does, peep that COOOODE
 
 ## Login deliverable
 
-For this deliverable I associate the votes with the logged in user.
+I got a nice login system working!
 
-- **User registration** - 
-- **existing user** - 
-- **Use MongoDB to store credentials** - 
-- **Restricts functionality** - 
+- **User registration** - Works! Although the authtoken doesn't send as a cookie until you use the login function. I have no idea why...
+- **existing user** - Login works great! try it out after making a user hehehehe
+- **Use MongoDB to store credentials** - heck yeah baby, peep those sexy encryptions in database.js
+- **Restricts functionality** - Profile and search button don't work till you've logged in (register doesn't automatically log you in yet, sad :()
 
 ## WebSocket deliverable
 
