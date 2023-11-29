@@ -122,8 +122,8 @@
       </center>
       
       <div style="border-radius:0% ; border-style: solid; border-color: black;">
-      <h3>
-        Current Users/Doctors Online (Websocket Placeholder)
+      <h3 id="actives">
+        Number of active users online:
       </h3>
       <ul id="currents">
         
@@ -201,35 +201,49 @@ async function queryUser() {
   queryUser();
   
 
-  const names = ["Dr. Oz", "Muskrat Boy", "Barbara Streisand (deceased)",
-   "Ancient Voodoo Healer", "Jonathan Cena", "Obama (*insert last name*)",
-    "Ansel Elgort", "Kanye East", "Mr. Nebuchadnezzar", "Dr. Philistina"];
+
   const list = document.getElementById("currents");
+  const actives = document.getElementById("actives");
 
-  function addName() {
-    const randomIndex = Math.floor(Math.random() * names.length);
-    const name = names[randomIndex];
-    const listItem = document.createElement("li");
-    listItem.textContent = name;
-    list.appendChild(listItem);
+  function configureWebSocket() {
+    const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+    this.socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
+    this.socket.onopen = (event) => {};
+    this.socket.onclose = (event) => {};
+    this.socket.onmessage = async (event) => {
+      const msg = JSON.parse(await event.data);
+      this.displayMsg(msg.number);
+    };
   }
 
-  function removeName() {
-    const listItems = list.getElementsByTagName("li");
-    if (listItems.length > 0) {
-      const randomIndex = Math.floor(Math.random() * listItems.length);
-      list.removeChild(listItems[randomIndex]);
-    }
+  function displayMsg(num) {
+    actives.innerText = `Number of active users online: ${num}`;
   }
 
-  setInterval(() => {
-    const shouldAdd = Math.random() < 0.5;
-    if (shouldAdd) {
-      addName();
-    } else {
-      removeName();
-    }
-  }, 1000);
+  // function addName() {
+  //   const randomIndex = Math.floor(Math.random() * names.length);
+  //   const name = names[randomIndex];
+  //   const listItem = document.createElement("li");
+  //   listItem.textContent = name;
+  //   list.appendChild(listItem);
+  // }
+
+  // function removeName() {
+  //   const listItems = list.getElementsByTagName("li");
+  //   if (listItems.length > 0) {
+  //     const randomIndex = Math.floor(Math.random() * listItems.length);
+  //     list.removeChild(listItems[randomIndex]);
+  //   }
+  // }
+
+  // setInterval(() => {
+  //   const shouldAdd = Math.random() < 0.5;
+  //   if (shouldAdd) {
+  //     addName();
+  //   } else {
+  //     removeName();
+  //   }
+  // }, 1000);
 
   function logout() {
     console.log("logging out");
@@ -244,7 +258,8 @@ async function queryUser() {
       });
   }
 
-
+  configureWebSocket();
+  console.log("configured web socket")
 
  
 </script>

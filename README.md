@@ -80,12 +80,12 @@ I got a nice login system working!
 
 ## WebSocket deliverable
 
-For this deliverable I used webSocket to update the votes on the frontend in realtime.
+For this deliverable, I display the number of users actively on the website at the bottom of index.js.
 
-- **Backend listens for WebSocket connection** - 
-- **Frontend makes WebSocket connection** - 
-- **Data sent over WebSocket connection** - 
-- **WebSocket data displayed** - 
+- **Backend listens for WebSocket connection** - websocket.js listens on port 3000.
+- **Frontend makes WebSocket connection** - index.html javascript at the bottom makes a websocket connection
+- **Data sent over WebSocket connection** - Websocket.js sends to frontend the number of active users online
+- **WebSocket data displayed** - check out the bottom of the homepage! I intend to make that number only the users that are logged in, but the websocket connection is finished and consistent. Try opening the page in multiple tabs or more than one device!
 
 ## React deliverable
 

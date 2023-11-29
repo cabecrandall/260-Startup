@@ -3,6 +3,7 @@ const DB = require('./database.js');
 const app = express();
 const bcrypt = require('bcrypt');
 const cookieParser = require('cookie-parser')
+const { websocket } = require('./websocket.js');
 
 
 const port = process.argv.length > 2 ? process.argv[2] : 3000;
@@ -170,11 +171,15 @@ app.use((_req, res) => {
     res.sendFile('index.html', { root: 'public' });
   });
 
-app.listen(port, () => {
+const httpService = app.listen(port, () => {
     console.log(`Listening on port ${port}`);
   });
 
+  websocket(httpService);
+
 console.log("Server running on port 8080");
+
+
 
 
 
