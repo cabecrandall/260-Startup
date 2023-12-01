@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    </head>
+    <style>
+        #yuh {
+            color: blue;
+        }
+    </style>
+    <body>
+        <div id="root"></div>
+    </body>
+    <script type="text/babel">
+        const root = ReactDOM.createRoot(
+            document.getElementById('root')
+        );
+        let count = 0;
+        function tick() {
+            console.log(count);
+            count++;
+            if (count % 2 === 0) {
+                const element = (
+                    <div>
+                        <h1>Time of Day</h1>
+                        <h2>It is {new Date().toLocaleTimeString()}.</h2>
+                    </div>
+                );
+                root.render(element);
+            } else {
+                const element = (
+                    <div>
+                        <h1>yuh of Day</h1>
+                        <h2>It is <span id="yuh">{new Date().toLocaleTimeString()}.</span></h2>
+                    </div>
+                );
+                root.render(element);
+            }
+            
+        }
+        setInterval(tick, 1000);
+    </script>
+</html>

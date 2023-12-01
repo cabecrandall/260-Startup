@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+
+  <style>
+    #even {
+      color: blue;
+    }
+    #odd {
+      color: red;
+    }
+  </style>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">  
+
+function pickColor(number) {
+  if (number % 2 === 0) {
+    return "even";
+  } else {
+    return "odd";
+  }
+}
+
+function Numbers() { 
+      const numbers = [1, 2, 3, 4, 5];
+      const listItems = numbers.map((number) => 
+        <li id={pickColor(number)}>{number}</li>
+      );
+      return(<ul>{listItems}</ul>)
+    }
+    
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<Numbers />);
+    </script>
+  </body>
+</html>
