@@ -133,14 +133,14 @@ margin: 5px 0;
 .front-animation {
     min-height: calc(100vh - (height of the footer));    
     padding: 0;
-    background-image: url('resources/crowd of doctors.jpeg');
+    background-image: url('../resources/crowd of doctors.jpeg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
   }
 
   .doctor {
-    background-image: url('crowd of doctors.jpeg');
+    background-image: url('../resources/crowd of doctors.jpeg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
