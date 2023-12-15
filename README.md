@@ -89,12 +89,12 @@ For this deliverable, I display the number of users actively on the website at t
 
 ## React deliverable
 
-For this deliverable I converted the application over to use Vue. I know it is supposed to use React, but the instructor said I could use Vue because I already have extensive experience with React.
+For this deliverable I converted the application over to use React!
 
-- **Bundled and transpiled** - 
-- **Components** - 
-- **Router** - 
-- **Hooks** - 
+- **Bundled and transpiled** - All .jsx, html, and css files were transpiled into the classic ugly monsters with Vite.
+- **Components** - Every page on the website is now a component, as evidenced by the fact that the homepage does not appear fully until you press "Home" or something else. Oops! Kinda broken, but it looks okay. 
+- **Router** - App.jsx routes components to viewport, header and footer stay static
+- **Hooks** - Hooks are used to change state on login and authentication (Logout button appears, Profile header link works, and login text disappears upon successful login). I even somehow connected the database! It's a real miracle. 
 
 ### Limitations
 There's a reason why this hasn't been done on a large scale. It's an idea that has a lot of application across a huge swath of the market (the market being all people that need to go to the hospital). Monetizing this bad boy would be one thing (perhaps impossble), but making an extremely simple and intuitive UI is the highest priority.
