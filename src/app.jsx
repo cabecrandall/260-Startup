@@ -49,6 +49,7 @@ export default function App() {
             username = data.username;
 
             setLogin(true);
+            setProfileRoute("home/profile");
             console.log("the function is working");
             
             setLogoutOption(
