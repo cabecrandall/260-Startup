@@ -40,6 +40,7 @@ app.post('/user', (req, res) => {
 });
 
 app.get('/user/:username', async (req, res) => {
+    console.log("getting user")
     const user = await getUser(req.params.username);
     if (user) {
         res.send(user);

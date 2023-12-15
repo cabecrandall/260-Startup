@@ -1,8 +1,8 @@
 import React from 'react';
 import {Login} from './login';
 
-export function Home() {
+export function Home({login}) {
   return (
-   <Login />
+   <Login login={login}/>
   );
 }

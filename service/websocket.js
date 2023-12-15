@@ -41,6 +41,7 @@ function websocket(httpServer) {
     // Respond to pong messages by marking the connection alive
     ws.on('pong', () => {
       connection.alive = true;
+      console.log('pong: ', connection.id)
     });
   });
 

@@ -1,9 +1,66 @@
 import React from 'react';
 import {Button} from 'react-bootstrap';
+import {Link} from 'react-router-dom';
 
-export function Login() {
-    return (
-        <main>
+export function Login({login}) {
+
+    const [logHTML, setLogHTML] = React.useState(<div></div>);
+
+    async function handleLogin(event) {
+        event.preventDefault();
+        
+    
+        // Get the values from the form
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+    
+        //get user from storage
+        try {
+        const user = await fetch('/user/' + username);
+        const userJson = await user.json();
+    
+        
+        const response = await fetch('auth/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ username: username, password: password })
+        });
+    
+        const token = await response.json();
+        const id = token.id;
+    
+        // Store the login information in localStorage
+        localStorage.setItem("username", username);
+        localStorage.setItem("profilePicture", userJson.profilePicture);
+        localStorage.setItem("favorites", JSON.stringify(userJson.favorites));
+        localStorage.setItem("history", JSON.stringify(userJson.history));
+    
+        location.href = "profile"
+    
+        // You can redirect to another page or perform other actions here
+        console.log("Login successful!");
+      }
+      catch (error) {
+        showIncorrectLogin("loginForm");
+      }
+    
+    
+        
+    }
+
+    console.log("login: "+ login);
+    React.useEffect(() => {
+    if (login) {
+        console.log("logged in!");
+        setLogHTML(
+            <div>  </div>
+        )
+    }
+    else {
+        setLogHTML(
+        <div>
             <center>
                 <h2>Welcome!</h2>
                 <div className="container">
@@ -20,8 +77,8 @@ export function Login() {
                                         <input type="password" id="password" className="form-control" placeholder="Your password here" />
                                     </div>
                                 </div>
-                                <a href="profile.html">
-                                <button type="submit" className="btn btn-lg btn-danger btn-block">Login</button>
+                                <a href="profile">
+                                <button type="submit" className="btn btn-lg btn-danger btn-block" onClick={(e) => handleLogin(e)}>Login</button>
                                 </a>
                             </form>
                         </div>
@@ -29,10 +86,19 @@ export function Login() {
                 </div>
                 
             <div id="createAccount">
-            Or <a href="createAccount.html">Create An Account</a>
+            Or <Link to="create">Create An Account</Link>
             </div>
-
             </center>
+            </div>
+        );
+    }
+}, [login]);
+
+
+    return (
+        <main>
+        {logHTML}
+        
         <br/>
             <center>
                 <h3>Search for hospitals by selecting your location below:</h3>

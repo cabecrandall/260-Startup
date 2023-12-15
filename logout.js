@@ -38,7 +38,7 @@ function logout() {
       .then((res) => res.json())
       .then((data) => {
         if (data.msg === 'Logged out') {
-          window.location.href = '/';
+          window.location.href = '/home';
         }
       });
   }
