@@ -19,6 +19,130 @@ GITHUB MERGES:
  How do I do route 53 well with a transferred thingy?
 
 
+### What ports are used for HTTP, HTTPS, SSH?
+    HTTP: 80
+    HTTPS: 443
+    SSH: 22
+
+### What do HTTP status codes in the 300, 400, 500 range indicate?
+    300 - Redirect
+    400 - Client Error
+    500 - Server Error
+### What does the HTTP header content-type allows you to do?
+    It allows you to put in css files, tab titles, and other scripts and metadata into your website
+### What do the following attributes of a cookie do?
+    ### Domain
+         - specifies which server can receive the cookie
+    ### Path
+        - The path that must exist in the URL for the cookie to be sent
+    ### SameSite
+        - Defines if the cookie can be sent when the user is not on the site, stuff like that
+    ### HTTPOnly
+        - Takes the cookie out of the document information, protecting it from javascript manipulation
+### Assuming the following Express middleware, what would be the console.log output for an HTTP GET request with a URL path of /foo/bar?
+    Whatever /foo/bar routes to
+### Given the following Express service code: What does the following JavaScript fetch return?
+    Whatever the fetch routes to
+### Given the following MongoDB query
+
+    { cost: { $gt: 10 }, name: /fran.*/}
+    select all of the matching documents.
+    Anything greater than 10 dollars, name beginning with fran.?
+
+### How should you store user passwords in a database?
+    hashed and salted
+### Assuming the following Node.js service code is executing with websockets, what will be logged to the console of the web browser?
+    pong verifications?
+### What is the WebSocket protocol used for?
+    Estabilshing consistent connections that listen for messages between server and client, basically allowing them both to listen
+### What is JSX and how are the curly braces rendered?
+    The curly braces ain't rendered, but the variables inside them are with the variable's current value
+
+### Assuming a HTML document with a 
+    <div id="root"></div>
+### element, what content will the following React component generate?
+      function Welcome(props) {
+        return <h1>Hello, {props.name}</h1>;
+      }
+      function App() {
+        return (
+          <div>
+            <Welcome name="Sara" />
+            <Welcome name="Cahal" />
+            <Welcome name="Edite" />
+          </div>
+        );
+      }
+      const root = ReactDOM.createRoot(document.getElementById('root'));
+      root.render(<App />);
+
+      It will render everything inside the welcome component three times, based on those three variables.
+
+### Assuming a HTML document with a 
+    <div id="root"></div>
+### element, what content will the following React component generate?
+    function Numbers() { 
+      const numbers = [1, 2, 3, 4, 5];
+      const listItems = numbers.map((number) =>
+        <li>{number}</li>
+      );
+      return(<ul>{listItems}</ul>)
+    }
+    const root = ReactDOM.createRoot(document.getElementById('root')); 
+    root.render(<Numbers/>);
+
+    A list of numbers, 1 through 5
+
+### What does the following React component do?
+function Example() {
+  // Declare a new state variable, which we'll call "count"  
+  const [count, setCount] = useState(0);
+    return (
+        <div>
+        <p>You clicked {count} times</p>
+        <button onClick={() => setCount(count + 1)}>
+            Click me
+        </button>
+        </div>
+    );
+    }
+
+    It changes the number displayed on {count} by incrementing it up by 1 each time the button is clicked
+
+### What are React Hooks used for?
+    They are used for changing a component of a React page when it is loaded, or when there is a state change
+### What is the useEffect hook used for?
+    When a function is rendered, the function runs, and it also runs whenever states that you've entered as arguments change
+
+### What does this code do?
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="blogs" element={<Blogs />} />
+          <Route path="contact" element={<Contact />} />
+          <Route path="*" element={<NoPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+    It routes links that are cicked on the page to clear a previous component and render the selected one, eliminating the need to go to a new webpage
+
+### What role does npm play in web development?
+    It allows packages to be downloaded for use in JS projects. Like Python's Anaconda
+### What does package.json do in a npm project?
+    It defines which packages need to be downloaded into an environment for a given project to work, useful for sending projects over the internet
+### What does the fetch function do?
+    It fetches from the argument url, based on the arguments entered in the URL
+### What does node.js do?
+    It creates a JS environment on your local machine, or on any machine for that matter
+### What does Vite do?
+    It packages projects into extremely condensed web apps, great for using with React and for testing out dev features. It rolls HTML and JS into one, too.
+
 ### In the following code, what does the link element do?
     link elements attach outside files to an HTML document, like icon and CSS
 ### In the following code,  what does a div tag do?
